@@ -1,0 +1,17 @@
+version: '2'
+services:
+    demo-app-db:
+        image: mongo
+        ports:
+        - "57017:27017"
+    demo-app-api:
+        build: .
+        ports:
+        - "58090:8080"
+        links:
+        - demo-app-db:mongodb
+        environment:
+        - DEMO_APP_MONGODB_HOST=mongodb
+        - DEMO_APP_MONGODB_PORT=27017
+        depends_on:
+        - demo-app-db

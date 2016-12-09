@@ -1,0 +1,22 @@
+{
+  "name": "demo-app-api",
+  "version": "1.0.0",
+  "description": "REST API for Demo App",
+  "main": "app/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@hndocker.oksystem.local:40001/web/demo-app-api.git"
+  },
+  "author": "Martin Verbovsky",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-accepts": "^0.1.0",
+    "mongoose": "^4.5.9"
+  }
+}

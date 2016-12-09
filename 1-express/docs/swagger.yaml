@@ -1,0 +1,132 @@
+# 
+# REST API for Demo App
+# 
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: Demo App API
+  
+basePath: /api
+schemes:
+  - http
+tags:
+  - name: person
+    description: Everything about Person
+paths:
+  # This is a path endpoint. Change it.
+  /persons:
+    # This is a HTTP operation
+    get:
+      summary: Get persons
+      tags:
+        - person
+      description: |
+        Persons endpoint returns array of `Person` objects.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: An array of persons
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Person'
+    post:
+      summary: Add a new person
+      tags:
+        - person
+      description: |
+        Persons endpoint saves a new `Person` object and returns saved object.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: person
+          in: body
+          description: A `Person` JSON object
+          schema:
+            $ref: '#/definitions/Person'
+          required: true
+      responses:
+        201:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Person'
+  /persons/{personId}:
+    get:
+      summary: Get an existing person
+      tags:
+        - person
+      produces:
+        - application/json
+      parameters:
+        - name: personId
+          in: path
+          type: string
+          description: Unique identifier representing a specific person.
+          required: true
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Person'
+        404:
+          description: Person not found    
+    put:
+      summary: Update an existing person
+      tags:
+        - person
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: personId
+          in: path
+          type: string
+          description: Unique identifier representing a specific person.
+          required: true
+        - name: person
+          in: body
+          description: A `Person` JSON object
+          schema:
+            $ref: '#/definitions/Person'
+          required: true
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Person'
+        404:
+          description: Person not found    
+    delete:
+      summary: Delete an existing person
+      tags:
+        - person
+      parameters:
+        - name: personId
+          in: path
+          type: string
+          description: Unique identifier representing a specific person.
+          required: true
+      responses:
+        200:
+          description: Successful response
+        404:
+          description: Person not found    
+definitions:
+  Person:
+    type: object
+    properties:
+      firstname:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+      birthday:
+        type: string
+        format: date
